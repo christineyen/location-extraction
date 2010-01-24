@@ -1,0 +1,31 @@
+To quit Aardvark question loop: submit an empty line.
+
+Enter your Aardvark question: Where can I find a basic, decent barber shop in midtown manhattan on the east side?
+[u'Manhattan, NY: 8008278', u'East Orange, NJ: 68390']
+
+Enter your Aardvark question: what is the population of manhattan, ks?
+[u'Manhattan, KS: 45629']
+
+Enter your Aardvark question: What's the best route to take driving cross country from San Francisco to Boston this summer?
+[u'San Francisco, CA: 7533384', u'Boston, MA: 589141', u'Country Club, FL: 53746']
+
+Enter your Aardvark question: i'm visiting sf next weekend for the first time, when's the best time to walk the golden gate bridge?
+[u'San Francisco, CA: 7533384']
+
+Enter your Aardvark question: i moved to ca from ny a few months ago. it is spring in nyc yet? there's a certain energy in nyc during the spring that i miss.
+[u'New York City, NY: 8008278', u'Spring Valley, NV: 165015', u'Spring Valley, NY: 25469', u'Fillmore, CA: 15386']
+
+Enter your Aardvark question: i recently moved to cupertino, ca - what fun things are there to do here and SF?
+[u'San Francisco, CA: 7533384', u'Cupertino, CA: 40129']
+
+Enter your Aardvark question: What's the best bar in this town?
+[u'Cambridge, MA: 101382']
+
+Enter your Aardvark question: what sort of gifts should i get my mother, who enjoys golfing and going out for dinner?
+[]
+
+Enter your Aardvark question: I'm new to town and am worried about dangerous areas. Which light rail stop is the least safe in Chicago Heights?
+[u'Chicago Heights, IL: 31806']
+
+Enter your Aardvark question: which suburb is the best to live in on the peninsula, south of san francisco?
+[u'San Francisco, CA: 7533384', u'South Gate, CA: 99922', u'Live Oak, CA: 17598']

@@ -1,0 +1,46 @@
+Below is my attempt at solving the location extraction problem as laid out by the interview prompt. I'd like to pre-emptively state that my background is not at all in A.I., having only taken an intro survey class. That being said, my solution is relatively accurate and currently returns a reasonable set of answers for the sample questions, enumerated below.
+
+
+__ Brief, high-level description of my general approach ______________
+I chose GeoNames to be my main source of location data, and fed a truncated version of its database dump into a Lucene index on my local machine. I tweaked GeoNames data before indexing to a) remove non-ascii characters from most common cities, and b) add some common nicknames / unique landmarks to cities' alternate_names data.
+
+On the actual user-interaction side, I wrote a Python script to accept user input, identify prepositional phrases as input, and used the object of each preposition as the input to a Lucene query. I then collected the identified locations, and ordered it by population to return the list of locations to the user.
+
+Estimated time spent: 8 hours
+
+
+__ Definite areas of improvement ______________
+- During implementation, I heavily considered excluding from the Lucene search any prepositional phrases in which prepositions were followed by pronouns: e.g. "I've got bedbugs IN MY house..." but decided to keep it open-ended for the current implementation, with faith that the Lucene index would return nothing of use for prepositional objects with no proper nouns.
+- Initially, working more closely to identify which prepositions to prune from the list to look for -- removing those which are unnecessary, or unlikely to refer to locations.
+- If there is a prepositional phrase that doesn't return a result from the Lucene index, I currently check it for "here" or "this," and if found, I add the user's current location (provided through the user account) to the list of returned locations.
+
+
+__ Sample questions, with notes ______________
+(* denotes being provided by interview prompt)
+1.* Where can I find a basic, decent barber shop in midtown manhattan on the east side?
+2. what is the population of manhattan, ks?
+-- Should distinguish between manhattan, NY and manhattan, KS
+
+3. * What's the best route to take driving cross country from San Francisco to Boston this summer?
+-- should return both San Francisco and Boston
+
+4.* i'm visiting sf next weekend for the first time, when's the best time to walk the golden gate bridge?
+-- should return (ideally) ONLY sf-related results (none stemming from "golden gate" or "bridge")
+
+5.* i moved to ca from ny a few months ago. it is spring in nyc yet? there's a certain energy in nyc during the spring that i miss.
+-- may return many results, should prioritize nyc for population / repetition
+
+6. i recently moved to cupertino, ca - what fun things are there to do here and SF?
+-- logically, should prioritize cupertino over sf. in practice, does not
+
+7.* What's the best bar in this town?
+-- should see "this" and add current location (via user profile) to list
+
+8. what sort of gifts should i get my mother, who enjoys golfing and going out for dinner?
+-- should return nothing
+
+9. I'm new to town and am worried about dangerous areas. Which light rail stop is the least safe in Chicago Heights?
+-- should distinguish between Chicago Heights and Chicago
+
+10. which suburb is the best to live in on the peninsula, south of san francisco?
+-- should return San Francisco and NOT South San Francisco or other variants

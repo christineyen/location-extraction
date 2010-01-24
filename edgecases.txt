@@ -1,0 +1,44 @@
+import lucene
+lucene.initVM(lucene.CLASSPATH)
+directory = lucene.FSDirectory.getDirectory("index")
+searcher = lucene.IndexSearcher(directory)
+analyzer = lucene.StopAnalyzer()
+fields = ['name', 'alternate_names', 'state']
+parser = lucene.MultiFieldQueryParser(fields, analyzer)
+query = parser.parse(parser, "chicago heights")
+searcher.search(query)[0]
+query = parser.parse(parser, "chicago")
+searcher.search(query)[0]
+query = parser.parse(parser, "south san francisco")
+searcher.search(query)[0]
+query = parser.parse(parser, "san francisco")
+searcher.search(query)[0]
+query = parser.parse(parser, "manhattan")
+searcher.search(query)[0]
+
+chicago heights (1145) vs chicago (1144)
+south san francisco (2422) vs san francisco (2387)
+manhattan, ny (1789) vs manhattan, ks (367)
+
+
+
+Where can I find a basic, decent barber shop in midtown manhattan on the east side?
+
+*what is the population of manhattan, ks?
+
+What's the best route to take driving cross country from San Francisco to Boston this summer?
+
+i'm visiting sf next weekend for the first time, when's the best time to walk the golden gate bridge?
+- should return (ideally) ONLY sf-related
+
+i moved to ca from ny a few months ago. it is spring in nyc yet? there's a certain energy in nyc during the spring that i miss.
+-- may return a lot, should prioritize nyc for population
+
+i recently moved to cupertino, ca - what fun things are there to do here and SF?
+-- logically, should prioritize cupertino over sf. in practice, does not
+
+What's the best bar in this town?
+-- should see "this" and add aardvark_loc to list
+
+what sort of gifts should i get my mother, who enjoys golfing and going out for dinner?
+-- should return nothing
